@@ -88,7 +88,7 @@ class APITestFish(TestCase):
 
 class APITestInsects(TestCase):
     def test_insects_api(self):
-        G(Insect, name='insects1')
+        G(Insect, name='insect1')
         G(Insect, name='insects2')
 
         c = Client()
@@ -98,8 +98,8 @@ class APITestInsects(TestCase):
         self.assertEqual(2, len(response.json()['results']))
 
     def test_insects_api_filters(self):
-        G(Insect, name='insects1', sell_price=200)
-        G(Insect, name='insects2', sell_price=500)
+        G(Insect, name='insect1', sell_price=200)
+        G(Insect, name='insect2', sell_price=500)
 
         c = Client()
 
@@ -110,4 +110,4 @@ class APITestInsects(TestCase):
         results = response.json()['results']
 
         self.assertEqual(1, len(results))
-        self.assertEqual('insects1', results[0]['name'])
+        self.assertEqual('insect1', results[0]['name'])
