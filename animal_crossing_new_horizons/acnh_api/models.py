@@ -14,6 +14,20 @@ class BaseModel(models.Model):
         return [self.color1, self.color2]
 
 
+class BaseCritter(BaseModel):
+    name = models.CharField(max_length=256)
+    critterpedia_image = models.CharField(max_length=256)
+    icon_image = models.CharField(max_length=256)
+    furniture_image = models.CharField(max_length=256)
+    museum_description = models.CharField(max_length=1000)
+    catch_phrase = models.CharField(max_length=1000)
+    source = models.CharField(max_length=1000)
+    sell_price = models.IntegerField()
+
+    class Meta:
+        abstract = True
+
+
 class Villager(BaseModel):
     name = models.CharField(max_length=256)
     icon_image = models.CharField(max_length=256)
@@ -42,24 +56,6 @@ class Fossil(BaseModel):
     interactive = models.BooleanField()
     can_reorder = models.BooleanField()
     in_catalog = models.BooleanField()
-
-    @property
-    def colors(self):
-        return [self.color1, self.color2]
-
-
-class BaseCritter(BaseModel):
-    name = models.CharField(max_length=256)
-    critterpedia_image = models.CharField(max_length=256)
-    icon_image = models.CharField(max_length=256)
-    furniture_image = models.CharField(max_length=256)
-    museum_description = models.CharField(max_length=1000)
-    catch_phrase = models.CharField(max_length=1000)
-    source = models.CharField(max_length=1000)
-    sell_price = models.IntegerField()
-
-    class Meta:
-        abstract = True
 
 
 class Fish(BaseCritter):
